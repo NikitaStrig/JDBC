@@ -9,10 +9,10 @@ public class AddEmployee implements EmployeeDAO {
     private final String password = "88635005";
     private final String url = "jdbc:postgresql://localhost:5432/skypro";
 
-    @Override
-    public List<Employee> getAddEmployee() {
-        List<Employee> employee = new ArrayList<>();
 
+
+    @Override
+    public void createUser() {
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
 
             Statement statement = conn.createStatement();
@@ -21,9 +21,20 @@ public class AddEmployee implements EmployeeDAO {
         } catch (Exception ex) {
             System.out.println("Connection failed...");
 
-
-        }return employee;
+        }
     }
-}
+
+    @Override
+        public void deleteUser() {
+            try (Connection conn = DriverManager.getConnection(url, user, password)) {
+
+                Statement statement = conn.createStatement();
+                int rows = statement.executeUpdate("DELETE FROM employee WHERE ID = 12");
+                System.out.printf("%d row(s) deleted", rows);
+            } catch (Exception ex) {
+                System.out.println("Connection failed...");
+            }
+        }
+    }
 
 
