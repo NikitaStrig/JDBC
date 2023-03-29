@@ -38,7 +38,7 @@ public class AddNewV2 implements EmployeeDAO{
                 int cityId = resultSet.getInt("city_id");
                 System.out.println("Город : " + cityId);
                 System.out.println("-----------------");
-                employees.add(new Employee(firstName,lasttName,gender,age,cityId));
+                employees.add(new Employee(id,firstName,lasttName,gender,age,cityId));
                 for (int i = 0; i < employees.size(); i++) {
                     System.out.println(employees.get(i));
 
