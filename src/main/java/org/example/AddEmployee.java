@@ -25,16 +25,11 @@ public class AddEmployee implements EmployeeDAO {
     }
 
     @Override
-        public void deleteUser() {
-            try (Connection conn = DriverManager.getConnection(url, user, password)) {
+    public void deleteUser(int idn) {
 
-                Statement statement = conn.createStatement();
-                int rows = statement.executeUpdate("DELETE FROM employee WHERE ID = 12");
-                System.out.printf("%d row(s) deleted", rows);
-            } catch (Exception ex) {
-                System.out.println("Connection failed...");
-            }
-        }
     }
+
+
+}
 
 

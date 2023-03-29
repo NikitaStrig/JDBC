@@ -18,11 +18,11 @@ public class DeleteEmployee implements EmployeeDAO {
     }
 
     @Override
-    public void deleteUser() {
+    public void deleteUser(int idn) {
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
 
             Statement statement = conn.createStatement();
-            int rows = statement.executeUpdate("DELETE FROM employee WHERE ID = 12");
+            int rows = statement.executeUpdate("DELETE FROM employee WHERE ID =" + idn);
             System.out.printf("%d row(s) deleted", rows);
         } catch (Exception ex) {
             System.out.println("Connection failed...");
