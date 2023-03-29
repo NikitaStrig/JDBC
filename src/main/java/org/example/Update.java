@@ -3,15 +3,11 @@ package org.example;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
-public class DeleteEmployee implements EmployeeDAO {
+public class Update implements EmployeeDAO{
     private final String user = "postgres";
     private final String password = "88635005";
     private final String url = "jdbc:postgresql://localhost:5432/skypro";
-
-
     @Override
     public void createUser() {
 
@@ -19,14 +15,7 @@ public class DeleteEmployee implements EmployeeDAO {
 
     @Override
     public void deleteUser(int idn) {
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
 
-            Statement statement = conn.createStatement();
-            int rows = statement.executeUpdate("DELETE FROM employee WHERE ID =" + idn);
-            System.out.printf("%d row(s) deleted", rows);
-        } catch (Exception ex) {
-            System.out.println("Connection failed...");
-        }
     }
 
     @Override
@@ -36,7 +25,14 @@ public class DeleteEmployee implements EmployeeDAO {
 
     @Override
     public void update(int idn) {
+        try (Connection conn = DriverManager.getConnection(url, user, password)) {
 
+            Statement statement = conn.createStatement();
+            int rows = statement.executeUpdate("UPDATE employee SET last_name = 'Petrovich' WHERE ID =" + idn);
+            System.out.printf("%d row(s) update", rows);
+        } catch (Exception ex) {
+            System.out.println("Connection failed...");
+        }
     }
 
     @Override
@@ -44,4 +40,3 @@ public class DeleteEmployee implements EmployeeDAO {
 
     }
 }
-

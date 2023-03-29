@@ -16,7 +16,7 @@ public class AddEmployee implements EmployeeDAO {
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
 
             Statement statement = conn.createStatement();
-            int rows = statement.executeUpdate("INSERT INTO employee (first_name, last_name, gender, age) VALUES ('Sergey', 'Ivanov', 'Male', 50);");
+            int rows = statement.executeUpdate("INSERT INTO employee (first_name, last_name, gender, age, city_id) VALUES ('Sergey', 'Ivanov', 'Male', 50, 3);");
             System.out.printf("Added %d rows", rows);
         } catch (Exception ex) {
             System.out.println("Connection failed...");
@@ -26,6 +26,21 @@ public class AddEmployee implements EmployeeDAO {
 
     @Override
     public void deleteUser(int idn) {
+
+    }
+
+    @Override
+    public void specifically(int idn) {
+
+    }
+
+    @Override
+    public void update(int idn) {
+
+    }
+
+    @Override
+    public void allObject() {
 
     }
 
