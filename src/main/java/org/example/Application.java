@@ -13,13 +13,16 @@ public class Application {
         EmployeeDAO employeeDAOupdate = new Update();
         EmployeeDAO employeeDAOspecifically = new SpecificallyObject();
         EmployeeDAO employeeDAOAllObject = new AllObject();
+        EmployeeDAO employeeDAOCreateN = new AddNewV2();
 
-        employeeDAODelete.deleteUser(14);
-        employeeDAOCreate.createUser();
-        employeeDAOAllObject.allObject();
-        employeeDAOupdate.update(14);
-        employeeDAOspecifically.specifically(14);
-        employeeDAODelete.deleteUser(14);
+       // employeeDAODelete.deleteUser(14);
+      //  employeeDAOCreate.createUser();
+       // employeeDAOAllObject.allObject();
+       // employeeDAOupdate.update(14);
+      //  employeeDAOspecifically.specifically(14);
+      //  employeeDAODelete.deleteUser(14);
+        employeeDAOCreateN.createUser2();
+        
         }
     }
 

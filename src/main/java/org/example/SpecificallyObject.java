@@ -1,6 +1,7 @@
 package org.example;
 
 import java.sql.*;
+import java.util.List;
 
 public class SpecificallyObject implements EmployeeDAO {
     private final String user = "postgres";
@@ -9,6 +10,11 @@ public class SpecificallyObject implements EmployeeDAO {
     @Override
     public void createUser() {
 
+    }
+
+    @Override
+    public List<Employee> createUser2() {
+        return null;
     }
 
     @Override

@@ -25,6 +25,11 @@ public class AddEmployee implements EmployeeDAO {
     }
 
     @Override
+    public List<Employee> createUser2() {
+        return null;
+    }
+
+    @Override
     public void deleteUser(int idn) {
 
     }

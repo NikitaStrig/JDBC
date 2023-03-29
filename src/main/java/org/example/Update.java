@@ -3,6 +3,7 @@ package org.example;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.util.List;
 
 public class Update implements EmployeeDAO{
     private final String user = "postgres";
@@ -11,6 +12,13 @@ public class Update implements EmployeeDAO{
     @Override
     public void createUser() {
 
+    }
+
+
+
+    @Override
+    public List<Employee> createUser2() {
+     return null;
     }
 
     @Override

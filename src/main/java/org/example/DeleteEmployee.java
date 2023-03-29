@@ -18,6 +18,12 @@ public class DeleteEmployee implements EmployeeDAO {
     }
 
     @Override
+    public List<Employee> createUser2() {
+        return null;
+
+    }
+
+    @Override
     public void deleteUser(int idn) {
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
 
