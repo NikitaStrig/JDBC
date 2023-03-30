@@ -80,7 +80,7 @@ public class EmployeeDAOint implements EmployeeDAO{
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
 
             Statement statement = conn.createStatement();
-            int rows = statement.executeUpdate("UPDATE employee SET last_name = 'Petrovich' WHERE ID =" + id);
+            int rows = statement.executeUpdate("UPDATE employee SET last_name = 'Petrovich' WHERE ID =");
             System.out.printf("%d row(s) update", rows);
         } catch (Exception ex) {
             System.out.println("Connection failed...");
