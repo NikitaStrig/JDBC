@@ -3,9 +3,17 @@ import java.sql.*;
 import java.util.List;
 
 public class Application {
+
     public static void main(String[] args)   {
-        EmployeeDAO employeeDAO = new AddEmployee();
-        List <Employee> employees = employeeDAO.getAddEmployee();
+
+        EmployeeDAO employeeDAOfull = new EmployeeDAOint();
+        employeeDAOfull.createUser2();
+        employeeDAOfull.allObject();
+        employeeDAOfull.update(19);
+        employeeDAOfull.specifically(19);
+        employeeDAOfull.deleteUser(19);
+
+
         }
     }
 
