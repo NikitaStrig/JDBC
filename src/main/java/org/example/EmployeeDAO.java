@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface EmployeeDAO {
     List<Employee> createUser2();
-    void deleteUser(int idn);
-    void specifically(int idn);
-    void update(int idn);
+    void deleteUser(Employee id);
+    void specifically(Employee id);
+    void update(Employee id);
     void allObject();
 
 }

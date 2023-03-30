@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDAOint implements EmployeeDAO{
-    private final String user = "postgres";
+   private final String user = "postgres";
     private final String password = "88635005";
     private final String url = "jdbc:postgresql://localhost:5432/skypro";
 
@@ -39,11 +39,11 @@ public class EmployeeDAOint implements EmployeeDAO{
     }
 
     @Override
-    public void deleteUser(int idn) {
+    public void deleteUser(Employee id) {
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
 
             Statement statement = conn.createStatement();
-            int rows = statement.executeUpdate("DELETE FROM employee WHERE ID =" + idn);
+            int rows = statement.executeUpdate("DELETE FROM employee WHERE ID =" + id);
             System.out.printf("%d row(s) deleted", rows);
         } catch (Exception ex) {
             System.out.println("Connection failed...");
@@ -51,9 +51,9 @@ public class EmployeeDAOint implements EmployeeDAO{
     }
 
     @Override
-    public void specifically(int idn) {
+    public void specifically(Employee employee) {
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
-            PreparedStatement statement = conn.prepareStatement("SELECT * FROM employee WHERE ID =" + idn);
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM employee WHERE ID");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
@@ -76,11 +76,11 @@ public class EmployeeDAOint implements EmployeeDAO{
     }
 
     @Override
-    public void update(int idn) {
+    public void update(Employee employee) {
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
 
             Statement statement = conn.createStatement();
-            int rows = statement.executeUpdate("UPDATE employee SET last_name = 'Petrovich' WHERE ID =" + idn);
+            int rows = statement.executeUpdate("UPDATE employee SET last_name = 'Petrovich' WHERE ID =" + id);
             System.out.printf("%d row(s) update", rows);
         } catch (Exception ex) {
             System.out.println("Connection failed...");
