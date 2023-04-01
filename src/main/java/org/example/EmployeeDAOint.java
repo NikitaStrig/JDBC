@@ -34,17 +34,16 @@ public class EmployeeDAOint implements EmployeeDAO{
     }
 
     @Override
-    public Employee deleteUser(int id) {
+    public Employee deleteUser(Employee employee, int id) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
 
         // Создаем экземпляр EntityManager из EntityManagerFactory
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         // Начинаем транзакцию
         entityManager.getTransaction().begin();
-        Employee employeeDel = entityManager.find(Employee.class, 3);
+        Employee employeeDel = entityManager.find(Employee.class, id);
         entityManager.remove(employeeDel);
         entityManager.getTransaction().commit();
-
         entityManager.close();
         entityManagerFactory.close();
         return employeeDel;
@@ -73,7 +72,7 @@ public class EmployeeDAOint implements EmployeeDAO{
     }
 
     @Override
-    public Employee update(int id) {
+    public Employee update( Employee employee, int id) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
 
         // Создаем экземпляр EntityManager из EntityManagerFactory
@@ -81,7 +80,7 @@ public class EmployeeDAOint implements EmployeeDAO{
         // Начинаем транзакцию
         entityManager.getTransaction().begin();
         Employee employeeDel = entityManager.find(Employee.class, id);
-        employeeDel.setFirst_name("Goha");
+       employeeDel.setFirst_name(employee.getFirst_name());
         entityManager.merge(employeeDel);
         entityManager.getTransaction().commit();
 
