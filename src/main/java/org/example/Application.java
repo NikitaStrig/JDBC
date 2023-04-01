@@ -8,19 +8,17 @@ import java.util.List;
 public class Application {
 
     public static void main(String[] args)   {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+       // EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
+       // EntityManager entityManager = entityManagerFactory.createEntityManager();
 
 
         EmployeeDAO employeeDAOfull = new EmployeeDAOint();
-        employeeDAOfull.createUser2();
+        //employeeDAOfull.createUser2();
         employeeDAOfull.allObject();
-        employeeDAOfull.update(19);
-        employeeDAOfull.specifically(19);
-        employeeDAOfull.deleteUser(19);
+        //employeeDAOfull.update(1);
+       // employeeDAOfull.specifically(4);
+       // employeeDAOfull.deleteUser(3);
 
-        entityManager.close();
-        entityManagerFactory.close();
         }
     }
 
