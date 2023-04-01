@@ -12,7 +12,7 @@ import java.util.List;
 public class EmployeeDAOint implements EmployeeDAO{
 
     @Override
-    public Employee createUser2() {
+    public Employee createUser2(Employee employee) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
 
         // Создаем экземпляр EntityManager из EntityManagerFactory
@@ -20,12 +20,12 @@ public class EmployeeDAOint implements EmployeeDAO{
         // Начинаем транзакцию
         entityManager.getTransaction().begin();
         Employee employeeCre = new Employee();
-        employeeCre.setFirst_name("Hiri");
-        employeeCre.setLast_name("Givi");
-        employeeCre.setGender("Male");
-        employeeCre.setAge(3);
-        employeeCre.setCity_id(2);
-        entityManager.persist(employeeCre);
+       // employeeCre.setFirst_name("Hiri");
+       // employeeCre.setLast_name("Givi");
+       // employeeCre.setGender("Male");
+       // employeeCre.setAge(3);
+       // employeeCre.setCity_id(2);
+        entityManager.persist(employee);
         entityManager.getTransaction().commit();
 
         entityManager.close();
