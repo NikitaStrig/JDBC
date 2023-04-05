@@ -1,115 +1,111 @@
 package org.example;
 
-import java.sql.*;
-import java.util.ArrayList;
+
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
 import java.util.List;
 
 public class EmployeeDAOint implements EmployeeDAO{
-    private final String user = "postgres";
-    private final String password = "88635005";
-    private final String url = "jdbc:postgresql://localhost:5432/skypro";
 
     @Override
-    public List<Employee> createUser2() {
-        List<Employee> employees = new ArrayList<>();
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
-            PreparedStatement statement = conn.prepareStatement("SELECT * FROM employee");
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                System.out.println("ID : " + id);
+    public Employee createUser2(Employee employee) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
 
-                String firstName = resultSet.getString("first_name");
-                System.out.println("Имя: " + firstName );
-                String lasttName = resultSet.getString("last_name");
-                System.out.println("Фамилия: " + lasttName );
-                String gender = resultSet.getString("gender");
-                System.out.println("Пол: " + gender );
-                int age = resultSet.getInt("age");
-                System.out.println("Возрост : " + age);
-                int cityId = resultSet.getInt("city_id");
-                System.out.println("Город : " + cityId);
-                System.out.println("-----------------");
-                employees.add(new Employee(id,firstName,lasttName,gender,age,cityId));
-            }
-        } catch (Exception ex) {
-            System.out.println("Connection failed...");
-        }
-        return employees;
+        // Создаем экземпляр EntityManager из EntityManagerFactory
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        // Начинаем транзакцию
+        entityManager.getTransaction().begin();
+        Employee employeeCre = new Employee();
+       // employeeCre.setFirst_name("Hiri");
+       // employeeCre.setLast_name("Givi");
+       // employeeCre.setGender("Male");
+       // employeeCre.setAge(3);
+       // employeeCre.setCity_id(2);
+        entityManager.persist(employee);
+        entityManager.getTransaction().commit();
+
+        entityManager.close();
+        entityManagerFactory.close();
+        return employeeCre;
     }
 
     @Override
-    public void deleteUser(int idn) {
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+    public Employee deleteUser(Employee employee, int id) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
 
-            Statement statement = conn.createStatement();
-            int rows = statement.executeUpdate("DELETE FROM employee WHERE ID =" + idn);
-            System.out.printf("%d row(s) deleted", rows);
-        } catch (Exception ex) {
-            System.out.println("Connection failed...");
-        }
+        // Создаем экземпляр EntityManager из EntityManagerFactory
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        // Начинаем транзакцию
+        entityManager.getTransaction().begin();
+        Employee employeeDel = entityManager.find(Employee.class, id);
+        entityManager.remove(employeeDel);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        entityManagerFactory.close();
+        return employeeDel;
     }
 
     @Override
-    public void specifically(int idn) {
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
-            PreparedStatement statement = conn.prepareStatement("SELECT * FROM employee WHERE ID =" + idn);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                System.out.println("ID : " + id);
+    public void specifically(int ids) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-                String firstName = resultSet.getString("first_name");
-                System.out.println("Имя: " + firstName );
-                String lasttName = resultSet.getString("last_name");
-                System.out.println("Фамилия: " + lasttName );
-                String gender = resultSet.getString("gender");
-                System.out.println("Пол: " + gender );
-                int age = resultSet.getInt("age");
-                System.out.println("Возрост : " + age);
-                int cityId = resultSet.getInt("city_id");
-                System.out.println("Город : " + cityId);
-            }
-        } catch (Exception ex) {
-            System.out.println("Connection failed...");
+        entityManager.getTransaction().begin();
+
+        String empSp = "SELECT s FROM Employee s WHERE s.id =" + ids;
+        TypedQuery<Employee> query = entityManager.createQuery(empSp, Employee.class);
+        List<Employee> employees = query.getResultList();
+        entityManager.getTransaction().commit();
+        for (Employee employee : employees) {
+            System.out.println("ID: " + employee.getId());
+            System.out.println("Name: " + employee.getFirst_name());
+            System.out.println("Age: " + employee.getAge());
+            System.out.println("------------");
         }
+
+        entityManager.close();
+        entityManagerFactory.close();
     }
 
     @Override
-    public void update(int idn) {
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+    public Employee update( Employee employee, int id) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
 
-            Statement statement = conn.createStatement();
-            int rows = statement.executeUpdate("UPDATE employee SET last_name = 'Petrovich' WHERE ID =" + idn);
-            System.out.printf("%d row(s) update", rows);
-        } catch (Exception ex) {
-            System.out.println("Connection failed...");
-        }
+        // Создаем экземпляр EntityManager из EntityManagerFactory
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        // Начинаем транзакцию
+        entityManager.getTransaction().begin();
+        Employee employeeDel = entityManager.find(Employee.class, id);
+       employeeDel.setFirst_name(employee.getFirst_name());
+        entityManager.merge(employeeDel);
+        entityManager.getTransaction().commit();
+
+        entityManager.close();
+        entityManagerFactory.close();
+        return employeeDel;
     }
 
     @Override
     public void allObject() {
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
-            PreparedStatement statement = conn.prepareStatement("SELECT * FROM employee");
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                System.out.println("ID : " + id);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-                String firstName = resultSet.getString("first_name");
-                System.out.println("Имя: " + firstName );
-                String lasttName = resultSet.getString("last_name");
-                System.out.println("Фамилия: " + lasttName );
-                String gender = resultSet.getString("gender");
-                System.out.println("Пол: " + gender );
-                int age = resultSet.getInt("age");
-                System.out.println("Возрост : " + age);
-                int cityId = resultSet.getInt("city_id");
-                System.out.println("Город : " + cityId);
-                System.out.println("-----------------");
-            }
-        } catch (Exception ex) {
-            System.out.println("Connection failed...");
+        entityManager.getTransaction().begin();
+
+        String empSp = "SELECT s FROM Employee s";
+        TypedQuery<Employee> query = entityManager.createQuery(empSp, Employee.class);
+        List<Employee> employees = query.getResultList();
+        entityManager.getTransaction().commit();
+        for (Employee employee : employees) {
+            System.out.println("ID: " + employee.getId());
+            System.out.println("Name: " + employee.getFirst_name());
+            System.out.println("Age: " + employee.getAge());
+            System.out.println("------------");
         }
+
     }
 }
