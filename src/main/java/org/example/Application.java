@@ -15,6 +15,9 @@ public class Application {
        // employeeDAOfull.update(employee, 2);
        // employeeDAOfull.specifically(4);
        // employeeDAOfull.deleteUser(employee, 2);
+        CityDAO cityDAOall = new CityDAOcomplite();
+      //  cityDAOall.create();
+        cityDAOall.delete(1);
 
         }
     }

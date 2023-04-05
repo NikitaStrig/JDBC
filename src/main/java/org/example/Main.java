@@ -15,12 +15,13 @@ public class Main {
         // Начинаем транзакцию
         entityManager.getTransaction().begin();
         City city = new City("fora");
-        entityManager.persist(city);
-        Stream.of(new Employee("Vasy","vasy","M",34, city),
-                new Employee("Vasy2","vasy2","M",35, city))
-                        .peek(employee -> employee.setCity_id(city.getid()))
-                                .forEach(entityManager::persist);
-        entityManager.persist(city);
+        City cityDel = entityManager.find(City.class, 1);
+        entityManager.remove(cityDel);
+        //Stream.of(new Employee("Vasy","vasy","M",34, city),
+         //       new Employee("Vasy2","vasy2","M",35, city))
+                    //    .peek(employee -> employee.setCity_id(city.getid()))
+                         //       .forEach(entityManager::persist);
+       // entityManager.persist(city);
         entityManager.getTransaction().commit();
         entityManager.close();
         entityManagerFactory.close();
