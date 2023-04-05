@@ -11,13 +11,12 @@ public class CityDAOcomplite implements CityDAO{
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        City city = new City("fora");
         City cityDel = entityManager.find(City.class, id);
         entityManager.remove(cityDel);
         entityManager.getTransaction().commit();
         entityManager.close();
         entityManagerFactory.close();
-        return city;
+        return cityDel;
     }
 
     @Override
@@ -36,4 +35,5 @@ public class CityDAOcomplite implements CityDAO{
         entityManager.close();
         entityManagerFactory.close();
     }
+
 }
