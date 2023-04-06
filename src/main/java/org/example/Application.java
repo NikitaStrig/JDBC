@@ -8,13 +8,17 @@ import java.util.List;
 public class Application {
 
     public static void main(String[] args)   {
-Employee employee = new Employee("Vasy","vasy","M",34,2);
+        City city = new City("fora");
+      Employee employee = new Employee("Vasy56","vasy","M",34, city.getid());
         EmployeeDAO employeeDAOfull = new EmployeeDAOint();
-        employeeDAOfull.createUser2(employee);
-        employeeDAOfull.allObject();
-        employeeDAOfull.update(employee, 2);
-        employeeDAOfull.specifically(4);
-        employeeDAOfull.deleteUser(employee, 2);
+       // employeeDAOfull.createUser2(employee);
+       // employeeDAOfull.allObject();
+        employeeDAOfull.update(employee, 1);
+       // employeeDAOfull.specifically(4);
+       // employeeDAOfull.deleteUser(employee, 2);
+        CityDAO cityDAOall = new CityDAOcomplite();
+       // cityDAOall.create();
+        cityDAOall.delete(1);
 
         }
     }

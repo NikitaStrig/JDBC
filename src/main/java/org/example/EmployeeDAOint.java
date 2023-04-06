@@ -80,7 +80,7 @@ public class EmployeeDAOint implements EmployeeDAO{
         // Начинаем транзакцию
         entityManager.getTransaction().begin();
         Employee employeeDel = entityManager.find(Employee.class, id);
-       employeeDel.setFirst_name(employee.getFirst_name());
+        employeeDel.setFirst_name(employee.getFirst_name());
         entityManager.merge(employeeDel);
         entityManager.getTransaction().commit();
 
