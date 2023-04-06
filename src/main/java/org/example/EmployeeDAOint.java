@@ -20,11 +20,6 @@ public class EmployeeDAOint implements EmployeeDAO{
         // Начинаем транзакцию
         entityManager.getTransaction().begin();
         Employee employeeCre = new Employee();
-       // employeeCre.setFirst_name("Hiri");
-       // employeeCre.setLast_name("Givi");
-       // employeeCre.setGender("Male");
-       // employeeCre.setAge(3);
-       // employeeCre.setCity_id(2);
         entityManager.persist(employee);
         entityManager.getTransaction().commit();
 
