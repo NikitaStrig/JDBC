@@ -26,8 +26,8 @@ public class CityDAOcomplite implements CityDAO{
         entityManager.getTransaction().begin();
         City city = new City("fora");
         entityManager.persist(city);
-        Stream.of(new Employee("Vasy","vasy","M",34, city),
-               new Employee("Vasy2","vasy2","M",35, city))
+        Stream.of(new Employee("Vasy","vasy","M",34, city.getid()),
+               new Employee("Vasy2","vasy2","M",35, city.getid()))
             .peek(employee -> employee.setCity_id(city.getid()))
                .forEach(entityManager::persist);
          entityManager.persist(city);

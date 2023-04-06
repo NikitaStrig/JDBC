@@ -11,7 +11,7 @@ public class City {
 private int id;
 private  String name;
 
-@OneToMany(mappedBy = "city",cascade = CascadeType.ALL)
+@OneToMany(mappedBy = "city",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Employee> employees;
 
     public City(String name) {
