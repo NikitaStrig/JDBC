@@ -12,7 +12,7 @@ import java.util.List;
 public class EmployeeDAOint implements EmployeeDAO{
 
     @Override
-    public Employee createUser2(Employee employee) {
+    public Employee create(Employee employee) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
 
         // Создаем экземпляр EntityManager из EntityManagerFactory
@@ -34,7 +34,7 @@ public class EmployeeDAOint implements EmployeeDAO{
     }
 
     @Override
-    public Employee deleteUser(Employee employee, int id) {
+    public Employee delete(Employee employee, int id) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
 
         // Создаем экземпляр EntityManager из EntityManagerFactory
